@@ -68,7 +68,7 @@ class HeroRemoteMediator(
                     val nextPage = response.nextPage
                     val keys = response.heroes.map { hero ->
                         HeroRemoteKeys(
-                            id = hero.id,
+                            id = hero.heroId,
                             prevPage = prevPage,
                             nextPage = nextPage,
                             lastUpdated = response.lastUpdated
@@ -88,7 +88,7 @@ class HeroRemoteMediator(
         state: PagingState<Int, Hero>
     ): HeroRemoteKeys? {
         return state.anchorPosition?.let { position ->
-            state.closestItemToPosition(position)?.id?.let { id ->
+            state.closestItemToPosition(position)?.heroId?.let { id ->
                 heroRemoteKeysDao.getRemoteKeys(heroId = id)
             }
         }
@@ -99,7 +99,7 @@ class HeroRemoteMediator(
     ): HeroRemoteKeys? {
         return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()
             ?.let { hero ->
-                heroRemoteKeysDao.getRemoteKeys(heroId = hero.id)
+                heroRemoteKeysDao.getRemoteKeys(heroId = hero.heroId)
             }
     }
 
@@ -108,7 +108,7 @@ class HeroRemoteMediator(
     ): HeroRemoteKeys? {
         return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()
             ?.let { hero ->
-                heroRemoteKeysDao.getRemoteKeys(heroId = hero.id)
+                heroRemoteKeysDao.getRemoteKeys(heroId = hero.heroId)
             }
     }
 

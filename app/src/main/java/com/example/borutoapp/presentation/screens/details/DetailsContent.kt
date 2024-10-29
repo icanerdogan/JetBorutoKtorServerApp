@@ -122,7 +122,7 @@ fun DetailsContent(
         content = {
             selectedHero?.let { hero ->
                 BackgroundContent(
-                    heroImage = hero.image,
+                    heroImage = hero.heroImage,
                     imageFraction = currentSheetFraction,
                     backgroundColor = Color(parseColor(darkVibrant)),
                     onCloseClicked = {
@@ -163,7 +163,7 @@ fun BottomSheetContent(
             Text(
                 modifier = Modifier
                     .weight(8f),
-                text = selectedHero.name,
+                text = selectedHero.heroName,
                 color = contentColor,
                 fontSize = MaterialTheme.typography.h4.fontSize,
                 fontWeight = FontWeight.Bold
@@ -178,21 +178,21 @@ fun BottomSheetContent(
             InfoBox(
                 icon = painterResource(id = R.drawable.ic_bolt),
                 iconColor = infoBoxIconColor,
-                bigText = "${selectedHero.power}",
+                bigText = "${selectedHero.heroPower}",
                 smallText = stringResource(R.string.power),
                 textColor = contentColor
             )
             InfoBox(
                 icon = painterResource(id = R.drawable.ic_calendar),
                 iconColor = infoBoxIconColor,
-                bigText = selectedHero.month,
+                bigText = selectedHero.heroMonth,
                 smallText = stringResource(R.string.month),
                 textColor = contentColor
             )
             InfoBox(
                 icon = painterResource(id = R.drawable.ic_cake),
                 iconColor = infoBoxIconColor,
-                bigText = selectedHero.day,
+                bigText = selectedHero.heroDay,
                 smallText = stringResource(R.string.birthday),
                 textColor = contentColor
             )
@@ -208,7 +208,7 @@ fun BottomSheetContent(
             modifier = Modifier
                 .alpha(ContentAlpha.medium)
                 .padding(bottom = MEDIUM_PADDING),
-            text = selectedHero.about,
+            text = selectedHero.heroAbout,
             color = contentColor,
             fontSize = MaterialTheme.typography.body1.fontSize,
             maxLines = ABOUT_TEXT_MAX_LINES
@@ -219,17 +219,17 @@ fun BottomSheetContent(
         ) {
             OrderedList(
                 title = stringResource(R.string.family),
-                items = selectedHero.family,
+                items = selectedHero.heroFamily,
                 textColor = contentColor
             )
             OrderedList(
                 title = stringResource(R.string.abilities),
-                items = selectedHero.abilities,
+                items = selectedHero.heroAbilities,
                 textColor = contentColor
             )
             OrderedList(
                 title = stringResource(R.string.nature_types),
-                items = selectedHero.natureTypes,
+                items = selectedHero.heroNatureTypes,
                 textColor = contentColor
             )
         }
@@ -306,17 +306,17 @@ val BottomSheetScaffoldState.currentSheetFraction: Float
 fun BottomSheetContentPreview() {
     BottomSheetContent(
         selectedHero = Hero(
-            id = 1,
-            name = "Naruto",
-            image = "",
-            about = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            rating = 4.5,
-            power = 0,
-            month = "Oct",
-            day = "1st",
-            family = listOf("Minato", "Kushina", "Boruto", "Himawari"),
-            abilities = listOf("Sage Mode", "Shadow Clone", "Rasengan"),
-            natureTypes = listOf("Earth", "Wind")
+            heroId = 1,
+            heroName = "Naruto",
+            heroImage = "",
+            heroAbout = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            heroRating = 4.5,
+            heroPower = 0,
+            heroMonth = "Oct",
+            heroDay = "1st",
+            heroFamily = listOf("Minato", "Kushina", "Boruto", "Himawari"),
+            heroAbilities = listOf("Sage Mode", "Shadow Clone", "Rasengan"),
+            heroNatureTypes = listOf("Earth", "Wind")
         )
     )
 }
