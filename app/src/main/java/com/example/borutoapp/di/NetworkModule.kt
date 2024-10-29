@@ -6,6 +6,7 @@ import com.example.borutoapp.data.remote.BorutoApi
 import com.example.borutoapp.data.repository.RemoteDataSourceImpl
 import com.example.borutoapp.domain.repository.RemoteDataSource
 import com.example.borutoapp.util.Constants.BASE_URL
+import com.google.gson.Gson
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -16,6 +17,8 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -41,6 +44,7 @@ object NetworkModule {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
             .addConverterFactory(Json.asConverterFactory(contentType))
             .build()
     }
