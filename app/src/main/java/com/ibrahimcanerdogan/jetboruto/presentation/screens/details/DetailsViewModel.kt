@@ -50,5 +50,5 @@ class DetailsViewModel @Inject constructor(
 }
 
 sealed class UiEvent {
-    object GenerateColorPalette : UiEvent()
+    data object GenerateColorPalette : UiEvent()
 }

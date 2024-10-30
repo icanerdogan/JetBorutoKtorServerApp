@@ -14,7 +14,6 @@ import com.ibrahimcanerdogan.jetboruto.util.PaletteGenerator.convertImageUrlToBi
 import com.ibrahimcanerdogan.jetboruto.util.PaletteGenerator.extractColorsFromBitmap
 import kotlinx.coroutines.flow.collectLatest
 
-@ExperimentalCoilApi
 @ExperimentalMaterialApi
 @Composable
 fun DetailsScreen(
@@ -55,6 +54,4 @@ fun DetailsScreen(
             }
         }
     }
-
-
 }

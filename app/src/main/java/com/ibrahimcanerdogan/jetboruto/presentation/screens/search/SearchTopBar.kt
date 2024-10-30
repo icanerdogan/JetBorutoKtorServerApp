@@ -1,14 +1,24 @@
 package com.ibrahimcanerdogan.jetboruto.presentation.screens.search
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.*
+import androidx.compose.material.AppBarDefaults
+import androidx.compose.material.ContentAlpha
+import androidx.compose.material3.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
@@ -18,20 +28,23 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.ibrahimcanerdogan.jetboruto.ui.theme.TOP_APP_BAR_HEIGHT
 import com.ibrahimcanerdogan.jetboruto.ui.theme.topAppBarBackgroundColor
 import com.ibrahimcanerdogan.jetboruto.ui.theme.topAppBarContentColor
 import com.ibrahimcanerdogan.jetboruto.R
+import com.ibrahimcanerdogan.jetboruto.ui.theme.SMALL_PADDING
+import com.ibrahimcanerdogan.jetboruto.ui.theme.welcomeScreenBackgroundColor
 
 @Composable
 fun SearchTopBar(
-    text: String,
+    stateText: MutableState<String>,
     onTextChange: (String) -> Unit,
     onSearchClicked: (String) -> Unit,
     onCloseClicked: () -> Unit
 ) {
     SearchWidget(
-        text = text,
+        stateText = stateText,
         onTextChange = onTextChange,
         onSearchClicked = onSearchClicked,
         onCloseClicked = onCloseClicked
@@ -40,7 +53,7 @@ fun SearchTopBar(
 
 @Composable
 fun SearchWidget(
-    text: String,
+    stateText: MutableState<String>,
     onTextChange: (String) -> Unit,
     onSearchClicked: (String) -> Unit,
     onCloseClicked: () -> Unit
@@ -48,43 +61,47 @@ fun SearchWidget(
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .height(TOP_APP_BAR_HEIGHT)
+            .background(Color.White)
+            .height(62.dp)
             .semantics {
                 contentDescription = "SearchWidget"
             },
-        elevation = AppBarDefaults.TopAppBarElevation,
-        color = MaterialTheme.colors.topAppBarBackgroundColor
+        shadowElevation = AppBarDefaults.TopAppBarElevation,
+        color = topAppBarBackgroundColor
     ) {
         TextField(
             modifier = Modifier
                 .fillMaxWidth()
+                .fillMaxHeight()
+                .background(welcomeScreenBackgroundColor)
                 .semantics {
                     contentDescription = "TextField"
                 },
-            value = text,
+            value = stateText.value,
             onValueChange = { onTextChange(it) },
             placeholder = {
                 Text(
                     modifier = Modifier
                         .alpha(alpha = ContentAlpha.medium),
-                    text = "Search here...",
-                    color = Color.White
+                    text = "Search",
+                    color = topAppBarContentColor
                 )
             },
             textStyle = TextStyle(
-                color = MaterialTheme.colors.topAppBarContentColor
+                color = topAppBarContentColor
             ),
             singleLine = true,
             leadingIcon = {
                 IconButton(
-                    modifier = Modifier
-                        .alpha(alpha = ContentAlpha.medium),
-                    onClick = {}
+                    modifier = Modifier.alpha(alpha = ContentAlpha.medium),
+                    onClick = {
+                        onCloseClicked()
+                    }
                 ) {
                     Icon(
-                        imageVector = Icons.Default.Search,
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = stringResource(R.string.search_icon),
-                        tint = MaterialTheme.colors.topAppBarContentColor
+                        tint = topAppBarContentColor
                     )
                 }
             },
@@ -95,17 +112,13 @@ fun SearchWidget(
                             contentDescription = "CloseButton"
                         },
                     onClick = {
-                        if (text.isNotEmpty()) {
-                            onTextChange("")
-                        } else {
-                            onCloseClicked()
-                        }
+                        stateText.value = ""
                     }
                 ) {
                     Icon(
                         imageVector = Icons.Default.Close,
                         contentDescription = stringResource(R.string.close_icon),
-                        tint = MaterialTheme.colors.topAppBarContentColor
+                        tint = topAppBarContentColor
                     )
                 }
             },
@@ -114,12 +127,15 @@ fun SearchWidget(
             ),
             keyboardActions = KeyboardActions(
                 onSearch = {
-                    onSearchClicked(text)
+                    onSearchClicked(stateText.value)
                 }
             ),
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color.Transparent,
-                cursorColor = MaterialTheme.colors.topAppBarContentColor
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = Color.Transparent,
+                unfocusedContainerColor = Color.Transparent,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                cursorColor = topAppBarContentColor
             )
         )
     }
@@ -128,8 +144,9 @@ fun SearchWidget(
 @Composable
 @Preview
 fun SearchWidgetPreview() {
+    val prevText = remember { mutableStateOf("") }
     SearchWidget(
-        text = "",
+        stateText = prevText,
         onTextChange = {},
         onSearchClicked = {},
         onCloseClicked = {}

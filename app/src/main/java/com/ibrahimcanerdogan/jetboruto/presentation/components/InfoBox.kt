@@ -6,9 +6,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.ContentAlpha
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -45,14 +45,14 @@ fun InfoBox(
             Text(
                 text = bigText,
                 color = textColor,
-                fontSize = MaterialTheme.typography.h6.fontSize,
+                fontSize = MaterialTheme.typography.titleMedium.fontSize,
                 fontWeight = FontWeight.Black
             )
             Text(
                 modifier = Modifier.alpha(ContentAlpha.medium),
                 text = smallText,
                 color = textColor,
-                fontSize = MaterialTheme.typography.overline.fontSize
+                fontSize = MaterialTheme.typography.labelLarge.fontSize
             )
         }
     }
@@ -63,10 +63,10 @@ fun InfoBox(
 fun InfoBoxPreview() {
     InfoBox(
         icon = painterResource(id = R.drawable.ic_bolt),
-        iconColor = MaterialTheme.colors.primary,
+        iconColor = MaterialTheme.colorScheme.primary,
         bigText = "92",
         smallText = "Power",
-        textColor = MaterialTheme.colors.titleColor
+        textColor = titleColor
     )
 }
 
@@ -75,9 +75,9 @@ fun InfoBoxPreview() {
 fun InfoBoxDarkPreview() {
     InfoBox(
         icon = painterResource(id = R.drawable.ic_bolt),
-        iconColor = MaterialTheme.colors.primary,
+        iconColor = MaterialTheme.colorScheme.primary,
         bigText = "92",
         smallText = "Power",
-        textColor = MaterialTheme.colors.titleColor
+        textColor = titleColor
     )
 }

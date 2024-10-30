@@ -8,9 +8,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -20,14 +22,15 @@ import androidx.compose.material.BottomSheetValue.Collapsed
 import androidx.compose.material.BottomSheetValue.Expanded
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.material.rememberBottomSheetState
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
@@ -46,6 +49,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.AsyncImage
@@ -66,7 +70,6 @@ import com.ibrahimcanerdogan.jetboruto.util.Constants.ABOUT_TEXT_MAX_LINES
 import com.ibrahimcanerdogan.jetboruto.util.Constants.BASE_URL
 import com.ibrahimcanerdogan.jetboruto.util.Constants.MIN_BACKGROUND_IMAGE_HEIGHT
 
-@ExperimentalCoilApi
 @ExperimentalMaterialApi
 @Composable
 fun DetailsContent(
@@ -91,7 +94,7 @@ fun DetailsContent(
     }
 
     val scaffoldState = rememberBottomSheetScaffoldState(
-        bottomSheetState = rememberBottomSheetState(initialValue = Expanded)
+        bottomSheetState = rememberBottomSheetState(initialValue = Collapsed)
     )
 
     val currentSheetFraction = scaffoldState.currentSheetFraction
@@ -137,15 +140,16 @@ fun DetailsContent(
 @Composable
 fun BottomSheetContent(
     selectedHero: Hero,
-    infoBoxIconColor: Color = MaterialTheme.colors.primary,
-    sheetBackgroundColor: Color = MaterialTheme.colors.surface,
-    contentColor: Color = MaterialTheme.colors.titleColor
+    infoBoxIconColor: Color = MaterialTheme.colorScheme.primary,
+    sheetBackgroundColor: Color = MaterialTheme.colorScheme.surface,
+    contentColor: Color = titleColor
 ) {
     Column(
         modifier = Modifier
             .background(sheetBackgroundColor)
             .padding(all = LARGE_PADDING)
     ) {
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -155,7 +159,7 @@ fun BottomSheetContent(
             Icon(
                 modifier = Modifier
                     .size(INFO_ICON_SIZE)
-                    .weight(2f),
+                    .weight(1f),
                 painter = painterResource(id = R.drawable.ic_logo),
                 contentDescription = stringResource(id = R.string.app_logo),
                 tint = contentColor
@@ -165,7 +169,7 @@ fun BottomSheetContent(
                     .weight(8f),
                 text = selectedHero.heroName,
                 color = contentColor,
-                fontSize = MaterialTheme.typography.h4.fontSize,
+                fontSize = MaterialTheme.typography.headlineSmall.fontSize,
                 fontWeight = FontWeight.Bold
             )
         }
@@ -197,11 +201,12 @@ fun BottomSheetContent(
                 textColor = contentColor
             )
         }
+        Spacer(modifier=Modifier.height(16.dp))
         Text(
             modifier = Modifier.fillMaxWidth(),
             text = stringResource(R.string.about),
             color = contentColor,
-            fontSize = MaterialTheme.typography.subtitle1.fontSize,
+            fontSize = MaterialTheme.typography.titleSmall.fontSize,
             fontWeight = FontWeight.Bold
         )
         Text(
@@ -210,7 +215,7 @@ fun BottomSheetContent(
                 .padding(bottom = MEDIUM_PADDING),
             text = selectedHero.heroAbout,
             color = contentColor,
-            fontSize = MaterialTheme.typography.body1.fontSize,
+            fontSize = MaterialTheme.typography.bodyMedium.fontSize,
             maxLines = ABOUT_TEXT_MAX_LINES
         )
         Row(
@@ -236,12 +241,11 @@ fun BottomSheetContent(
     }
 }
 
-@ExperimentalCoilApi
 @Composable
 fun BackgroundContent(
     heroImage: String,
     imageFraction: Float = 1f,
-    backgroundColor: Color = MaterialTheme.colors.surface,
+    backgroundColor: Color = MaterialTheme.colorScheme.surface,
     onCloseClicked: () -> Unit
 ) {
     val imageUrl = remember { "$BASE_URL${heroImage}" }
@@ -256,7 +260,7 @@ fun BackgroundContent(
                 .fillMaxWidth()
                 .fillMaxHeight(
                     fraction = (imageFraction + MIN_BACKGROUND_IMAGE_HEIGHT)
-                        .coerceAtMost(1.0f)
+                        .coerceAtMost(maximumValue = 1.0f)
                 )
                 .align(Alignment.TopCenter),
             model = ImageRequest.Builder(LocalContext.current)

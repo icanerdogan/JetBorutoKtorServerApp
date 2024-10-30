@@ -7,9 +7,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ContentAlpha
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,7 +36,6 @@ import com.ibrahimcanerdogan.jetboruto.ui.theme.*
 import com.ibrahimcanerdogan.jetboruto.util.Constants.BASE_URL
 import com.ibrahimcanerdogan.jetboruto.R
 
-@ExperimentalCoilApi
 @Composable
 fun ListContent(
     heroes: LazyPagingItems<Hero>,
@@ -91,7 +90,6 @@ fun handlePagingResult(
     }
 }
 
-@ExperimentalCoilApi
 @Composable
 fun HeroItem(
     hero: Hero,
@@ -134,8 +132,8 @@ fun HeroItem(
             ) {
                 Text(
                     text = hero.heroName,
-                    color = MaterialTheme.colors.topAppBarContentColor,
-                    fontSize = MaterialTheme.typography.h5.fontSize,
+                    color = topAppBarContentColor,
+                    fontSize = MaterialTheme.typography.titleLarge.fontSize,
                     fontWeight = FontWeight.Bold,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
@@ -143,12 +141,12 @@ fun HeroItem(
                 Text(
                     text = hero.heroAbout,
                     color = Color.White.copy(alpha = ContentAlpha.medium),
-                    fontSize = MaterialTheme.typography.subtitle1.fontSize,
+                    fontSize = MaterialTheme.typography.titleMedium.fontSize,
                     maxLines = 3,
                     overflow = TextOverflow.Ellipsis
                 )
                 Row(
-                    modifier = Modifier.padding(top = SMALL_PADDING),
+                    modifier = Modifier.wrapContentHeight().padding(top = MEDIUM_PADDING),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     RatingWidget(
@@ -166,7 +164,6 @@ fun HeroItem(
     }
 }
 
-@ExperimentalCoilApi
 @Composable
 @Preview
 fun HeroItemPreview() {
@@ -188,7 +185,6 @@ fun HeroItemPreview() {
     )
 }
 
-@ExperimentalCoilApi
 @Composable
 @Preview(uiMode = UI_MODE_NIGHT_YES)
 fun HeroItemDarkPreview() {

@@ -29,6 +29,7 @@ class SearchViewModel @Inject constructor(
     }
 
     fun searchHeroes(query: String) {
+        updateSearchQuery(query)
         viewModelScope.launch(Dispatchers.IO) {
             useCases.searchHeroesUseCase(query = query).cachedIn(viewModelScope).collect {
                 _searchedHeroes.value = it
