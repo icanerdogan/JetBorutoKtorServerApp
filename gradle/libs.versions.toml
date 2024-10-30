@@ -1,0 +1,9 @@
+[versions]
+
+
+[libraries]
+
+[plugins]
+androidx-room = { id = "androidx.room", version = "2.6.1" }
+
+
