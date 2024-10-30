@@ -1,61 +1,61 @@
 package com.example.borutoapp.data.remote
 
-import com.example.borutoapp.domain.model.ApiResponse
+import com.example.borutoapp.domain.model.APIResponse
 import com.example.borutoapp.domain.model.Hero
 
 class FakeBorutoApi : BorutoApi {
 
     private val heroes = listOf(
         Hero(
-            id = 1,
-            name = "Sasuke",
-            image = "",
-            about = "",
-            rating = 5.0,
-            power = 0,
-            month = "",
-            day = "",
-            family = listOf(),
-            abilities = listOf(),
-            natureTypes = listOf()
+            heroId = 1,
+            heroName = "Sasuke",
+            heroImage = "",
+            heroAbout = "",
+            heroRating = 5.0,
+            heroPower = 0,
+            heroMonth = "",
+            heroDay = "",
+            heroFamily = listOf(),
+            heroAbilities = listOf(),
+            heroNatureTypes = listOf()
         ),
         Hero(
-            id = 2,
-            name = "Naruto",
-            image = "",
-            about = "",
-            rating = 5.0,
-            power = 0,
-            month = "",
-            day = "",
-            family = listOf(),
-            abilities = listOf(),
-            natureTypes = listOf()
+            heroId = 2,
+            heroName = "Naruto",
+            heroImage = "",
+            heroAbout = "",
+            heroRating = 5.0,
+            heroPower = 0,
+            heroMonth = "",
+            heroDay = "",
+            heroFamily = listOf(),
+            heroAbilities = listOf(),
+            heroNatureTypes = listOf()
         ),
         Hero(
-            id = 3,
-            name = "Sakura",
-            image = "",
-            about = "",
-            rating = 5.0,
-            power = 0,
-            month = "",
-            day = "",
-            family = listOf(),
-            abilities = listOf(),
-            natureTypes = listOf()
+            heroId = 3,
+            heroName = "Sakura",
+            heroImage = "",
+            heroAbout = "",
+            heroRating = 5.0,
+            heroPower = 0,
+            heroMonth = "",
+            heroDay = "",
+            heroFamily = listOf(),
+            heroAbilities = listOf(),
+            heroNatureTypes = listOf()
         )
     )
 
-    override suspend fun getAllHeroes(page: Int): ApiResponse {
-        return ApiResponse(
+    override suspend fun getAllHeroes(page: Int): APIResponse {
+        return APIResponse(
             success = false
         )
     }
 
-    override suspend fun searchHeroes(name: String): ApiResponse {
+    override suspend fun searchHeroes(name: String): APIResponse {
         val searchedHeroes = findHeroes(name = name)
-        return ApiResponse(
+        return APIResponse(
             success = true,
             message = "ok",
             heroes = searchedHeroes
@@ -66,7 +66,7 @@ class FakeBorutoApi : BorutoApi {
         val founded = mutableListOf<Hero>()
         return if (name.isNotEmpty()) {
             heroes.forEach { hero ->
-                if (hero.name.lowercase().contains(name.lowercase())) {
+                if (hero.heroName.lowercase().contains(name.lowercase())) {
                     founded.add(hero)
                 }
             }

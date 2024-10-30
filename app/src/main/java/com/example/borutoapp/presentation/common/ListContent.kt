@@ -52,7 +52,7 @@ fun ListContent(
             items(
                 items = heroes.itemSnapshotList.items,
                 key = { hero ->
-                    hero.id
+                    hero.heroId
                 }
             ) { hero ->
                 HeroItem(hero = hero, navController = navController)
@@ -101,7 +101,7 @@ fun HeroItem(
         modifier = Modifier
             .height(HERO_ITEM_HEIGHT)
             .clickable {
-                navController.navigate(Screen.Details.passHeroId(heroId = hero.id))
+                navController.navigate(Screen.Details.passHeroId(heroId = hero.heroId))
             },
         contentAlignment = Alignment.BottomStart
     ) {
@@ -109,7 +109,7 @@ fun HeroItem(
             AsyncImage(
                 modifier = Modifier.fillMaxSize(),
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(data = "$BASE_URL${hero.image}")
+                    .data(data = "$BASE_URL${hero.heroImage}")
                     .placeholder(drawableResId = R.drawable.ic_placeholder)
                     .error(drawableResId = R.drawable.ic_placeholder)
                     .build(),
@@ -133,7 +133,7 @@ fun HeroItem(
                     .padding(all = MEDIUM_PADDING)
             ) {
                 Text(
-                    text = hero.name,
+                    text = hero.heroName,
                     color = MaterialTheme.colors.topAppBarContentColor,
                     fontSize = MaterialTheme.typography.h5.fontSize,
                     fontWeight = FontWeight.Bold,
@@ -141,7 +141,7 @@ fun HeroItem(
                     overflow = TextOverflow.Ellipsis
                 )
                 Text(
-                    text = hero.about,
+                    text = hero.heroAbout,
                     color = Color.White.copy(alpha = ContentAlpha.medium),
                     fontSize = MaterialTheme.typography.subtitle1.fontSize,
                     maxLines = 3,
@@ -153,10 +153,10 @@ fun HeroItem(
                 ) {
                     RatingWidget(
                         modifier = Modifier.padding(end = SMALL_PADDING),
-                        rating = hero.rating
+                        rating = hero.heroRating
                     )
                     Text(
-                        text = "(${hero.rating})",
+                        text = "(${hero.heroRating})",
                         textAlign = TextAlign.Center,
                         color = Color.White.copy(alpha = ContentAlpha.medium)
                     )
@@ -172,17 +172,17 @@ fun HeroItem(
 fun HeroItemPreview() {
     HeroItem(
         hero = Hero(
-            id = 1,
-            name = "Sasuke",
-            image = "",
-            about = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
-            rating = 0.0,
-            power = 100,
-            month = "",
-            day = "",
-            family = listOf(),
-            abilities = listOf(),
-            natureTypes = listOf()
+            heroId = 1,
+            heroName = "Sasuke",
+            heroImage = "",
+            heroAbout = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+            heroRating = 0.0,
+            heroPower = 100,
+            heroMonth = "",
+            heroDay = "",
+            heroFamily = listOf(),
+            heroAbilities = listOf(),
+            heroNatureTypes = listOf()
         ),
         navController = rememberNavController()
     )
@@ -194,17 +194,17 @@ fun HeroItemPreview() {
 fun HeroItemDarkPreview() {
     HeroItem(
         hero = Hero(
-            id = 1,
-            name = "Sasuke",
-            image = "",
-            about = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
-            rating = 0.0,
-            power = 100,
-            month = "",
-            day = "",
-            family = listOf(),
-            abilities = listOf(),
-            natureTypes = listOf()
+            heroId = 1,
+            heroName = "Sasuke",
+            heroImage = "",
+            heroAbout = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+            heroRating = 0.0,
+            heroPower = 100,
+            heroMonth = "",
+            heroDay = "",
+            heroFamily = listOf(),
+            heroAbilities = listOf(),
+            heroNatureTypes = listOf()
         ),
         navController = rememberNavController()
     )

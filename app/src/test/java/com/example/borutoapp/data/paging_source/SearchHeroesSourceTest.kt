@@ -23,43 +23,43 @@ class SearchHeroesSourceTest {
         borutoApi = FakeBorutoApi()
         heroes = listOf(
             Hero(
-                id = 1,
-                name = "Sasuke",
-                image = "",
-                about = "",
-                rating = 5.0,
-                power = 0,
-                month = "",
-                day = "",
-                family = listOf(),
-                abilities = listOf(),
-                natureTypes = listOf()
+                heroId = 1,
+                heroName = "Sasuke",
+                heroImage = "",
+                heroAbout = "",
+                heroRating = 5.0,
+                heroPower = 0,
+                heroMonth = "",
+                heroDay = "",
+                heroFamily = listOf(),
+                heroAbilities = listOf(),
+                heroNatureTypes = listOf()
             ),
             Hero(
-                id = 2,
-                name = "Naruto",
-                image = "",
-                about = "",
-                rating = 5.0,
-                power = 0,
-                month = "",
-                day = "",
-                family = listOf(),
-                abilities = listOf(),
-                natureTypes = listOf()
+                heroId = 2,
+                heroName = "Naruto",
+                heroImage = "",
+                heroAbout = "",
+                heroRating = 5.0,
+                heroPower = 0,
+                heroMonth = "",
+                heroDay = "",
+                heroFamily = listOf(),
+                heroAbilities = listOf(),
+                heroNatureTypes = listOf()
             ),
             Hero(
-                id = 3,
-                name = "Sakura",
-                image = "",
-                about = "",
-                rating = 5.0,
-                power = 0,
-                month = "",
-                day = "",
-                family = listOf(),
-                abilities = listOf(),
-                natureTypes = listOf()
+                heroId = 3,
+                heroName = "Sakura",
+                heroImage = "",
+                heroAbout = "",
+                heroRating = 5.0,
+                heroPower = 0,
+                heroMonth = "",
+                heroDay = "",
+                heroFamily = listOf(),
+                heroAbilities = listOf(),
+                heroNatureTypes = listOf()
             )
         )
     }

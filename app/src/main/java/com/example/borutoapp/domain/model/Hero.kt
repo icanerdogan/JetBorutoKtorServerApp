@@ -9,15 +9,15 @@ import kotlinx.serialization.Serializable
 @Entity(tableName = HERO_DATABASE_TABLE)
 data class Hero(
     @PrimaryKey(autoGenerate = false)
-    val id: Int,
-    val name: String,
-    val image: String,
-    val about: String,
-    val rating: Double,
-    val power: Int,
-    val month: String,
-    val day: String,
-    val family: List<String>,
-    val abilities: List<String>,
-    val natureTypes: List<String>
+    val heroId: Int,
+    val heroAbilities: List<String>,
+    val heroAbout: String,
+    val heroDay: String,
+    val heroFamily: List<String>,
+    val heroImage: String,
+    val heroMonth: String,
+    val heroName: String,
+    val heroNatureTypes: List<String>,
+    val heroPower: Int,
+    val heroRating: Double
 )
