@@ -16,7 +16,6 @@ import com.ibrahimcanerdogan.jetboruto.presentation.screens.welcome.WelcomeScree
 import com.ibrahimcanerdogan.jetboruto.util.Constants.DETAILS_ARGUMENT_KEY
 
 @ExperimentalMaterialApi
-@ExperimentalCoilApi
 @ExperimentalAnimationApi
 @Composable
 fun SetupNavGraph(navController: NavHostController, startDestination: String) {
