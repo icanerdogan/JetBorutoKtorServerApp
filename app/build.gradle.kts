@@ -12,7 +12,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.borutoapp"
+        applicationId = "com.ibrahimcanerdogan.jetboruto"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -54,7 +54,7 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-    namespace = "com.example.borutoapp"
+    namespace = "com.ibrahimcanerdogan.jetboruto"
 }
 
 dependencies {
